@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pendler-Ampel – Details</title>
+  <link rel="stylesheet" href="../shared/base.css"><link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <main>
+    <section id="setup" hidden><p class="eyebrow">Pendler-Ampel</p><h1>Einrichtung erforderlich</h1><p>Hinterlege deinen API-Key sowie Start und Ziel.</p><button class="primary open-options">Einstellungen öffnen</button></section>
+    <section id="dashboard" hidden>
+      <header><div><p class="eyebrow">Pendler-Ampel</p><h1 id="route-label"></h1></div><span id="status-label" class="status"><span class="status-dot"></span><span id="status-text"></span></span></header>
+      <div class="metric primary-metric"><span>Aktuelle Fahrzeit</span><strong id="current-time"></strong></div>
+      <div class="metric-grid"><div class="metric"><span>Normal</span><strong id="normal-time"></strong></div><div class="metric"><span>Verzögerung</span><strong id="delay"></strong></div><div class="metric"><span>Entfernung</span><strong id="distance"></strong></div><div class="metric"><span>Datenalter</span><strong id="data-age"></strong></div></div>
+      <p id="trend" class="trend"></p><p id="updated" class="muted"></p>
+      <div id="error" class="notice error" role="status" hidden></div>
+      <section class="chart-card"><div class="chart-heading"><h2>Letzte 60 Minuten</h2><div class="legend"><span class="legend-current">Aktuell</span><span class="legend-baseline">Normal</span></div></div><div id="history-chart"></div></section>
+      <div class="actions"><button id="refresh" class="primary">Jetzt aktualisieren</button><button id="open-route">Route öffnen</button><button class="open-options">Einstellungen</button></div>
+    </section>
+    <section id="load-error" class="notice error" hidden><h1>Daten nicht verfügbar</h1><p id="load-error-message"></p></section>
+  </main>
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

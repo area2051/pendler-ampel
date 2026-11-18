@@ -1,0 +1,14 @@
+{
+  "name": "pendler-ampel",
+  "version": "1.1.4",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js && python3 -m unittest tests/test_google_routes_script.py",
+    "check": "node --no-warnings --experimental-vm-modules scripts/validate-project.js",
+    "verify": "npm run check && npm test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

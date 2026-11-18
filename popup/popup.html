@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pendler-Ampel</title>
+  <link rel="stylesheet" href="../shared/base.css"><link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <section id="setup" hidden>
+      <p class="eyebrow">Pendler-Ampel</p><h1>Einrichtung erforderlich</h1>
+      <p>Hinterlege deinen eigenen Google-Routes-API-Key sowie Start und Ziel.</p>
+      <button class="primary open-options" type="button">Einstellungen öffnen</button>
+    </section>
+    <section id="dashboard" hidden>
+      <header><div><p class="eyebrow">Pendler-Ampel</p><h1 id="route-label"></h1></div><span id="status-label" class="status"><span class="status-dot"></span><span id="status-text"></span></span></header>
+      <p id="current-time" class="current-time"></p>
+      <p>Normal: <strong id="normal-time"></strong></p>
+      <p id="delay" class="delay"></p>
+      <p id="trend" class="trend"></p>
+      <p id="updated" class="muted"></p>
+      <div id="error" class="notice error" role="status" hidden></div>
+      <div class="actions"><button id="refresh" class="primary" type="button">Jetzt aktualisieren</button><button id="open-route" type="button">Route öffnen</button></div>
+      <div class="actions"><button id="open-details" type="button">Details öffnen</button><button class="open-options" type="button">Einstellungen</button></div>
+    </section>
+    <section id="load-error" class="notice error" hidden><h1>Daten nicht verfügbar</h1><p id="load-error-message"></p><button class="open-options" type="button">Einstellungen</button></section>
+  </main>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

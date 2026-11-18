@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pendler-Ampel – Einstellungen</title>
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Pendler-Ampel</p>
+      <h1>Einstellungen</h1>
+      <p>Deine Angaben bleiben lokal in Chrome und werden nur für Routenabfragen an Google übertragen.</p>
+    </header>
+
+    <form id="settings-form" novalidate>
+      <section>
+        <h2>Route und API-Zugang</h2>
+        <label>Routenbezeichnung<input id="route-label" name="routeLabel" required></label>
+        <label>Google-Routes-API-Key
+          <span class="key-row">
+            <input id="api-key" name="apiKey" type="password" autocomplete="off" spellcheck="false" required>
+            <button id="toggle-key" type="button" aria-pressed="false">Anzeigen</button>
+          </span>
+        </label>
+        <p class="hint">Der Key ist lokal auslesbar und kann in einer clientseitigen Erweiterung nicht kryptografisch sicher verborgen werden.</p>
+        <label>Startadresse<input id="origin" name="origin" autocomplete="street-address" required></label>
+        <label>Zieladresse<input id="destination" name="destination" autocomplete="street-address" required></label>
+      </section>
+
+      <section>
+        <h2>Automatische Überwachung</h2>
+        <label>Aktualisierungsintervall
+          <select id="interval" name="intervalMinutes">
+            <option value="5">5 Minuten</option><option value="10">10 Minuten</option><option value="15">15 Minuten</option>
+          </select>
+        </label>
+        <fieldset>
+          <legend>Aktive Wochentage</legend>
+          <div class="weekday-grid">
+            <label><input type="checkbox" name="weekday" value="1">Mo</label>
+            <label><input type="checkbox" name="weekday" value="2">Di</label>
+            <label><input type="checkbox" name="weekday" value="3">Mi</label>
+            <label><input type="checkbox" name="weekday" value="4">Do</label>
+            <label><input type="checkbox" name="weekday" value="5">Fr</label>
+            <label><input type="checkbox" name="weekday" value="6">Sa</label>
+            <label><input type="checkbox" name="weekday" value="7">So</label>
+          </div>
+        </fieldset>
+        <div class="two-columns">
+          <label>Beginn<input id="start-time" name="startTime" type="time" required></label>
+          <label>Ende<input id="end-time" name="endTime" type="time" required></label>
+        </div>
+        <p class="hint">Bei einem Zeitraum über Mitternacht gehört der Abschnitt nach 00:00 Uhr zum gewählten Starttag.</p>
+        <label class="check"><input id="auto-refresh" name="autoRefreshEnabled" type="checkbox">Automatische Aktualisierung aktiv</label>
+        <label class="check"><input id="notifications" name="notificationsEnabled" type="checkbox">Warnungen aktiv</label>
+        <label class="check"><input id="recovery-notifications" name="recoveryNotificationsEnabled" type="checkbox">Entwarnungen aktiv</label>
+      </section>
+
+      <section>
+        <h2>Routeneinstellungen</h2>
+        <label class="check"><input id="avoid-tolls" name="avoidTolls" type="checkbox">Mautstraßen vermeiden</label>
+        <label class="check"><input id="avoid-highways" name="avoidHighways" type="checkbox">Autobahnen vermeiden</label>
+        <label class="check"><input id="avoid-ferries" name="avoidFerries" type="checkbox">Fähren vermeiden</label>
+      </section>
+
+      <section>
+        <h2>Warnschwellen</h2>
+        <div class="threshold-grid">
+          <label>Orange ab Minuten<input id="orange-minutes" type="number" min="0" step="1" required></label>
+          <label>Rot ab Minuten<input id="red-minutes" type="number" min="0" step="1" required></label>
+          <label>Orange ab Prozent<input id="orange-percent" type="number" min="0" step="1" required></label>
+          <label>Rot ab Prozent<input id="red-percent" type="number" min="0" step="1" required></label>
+          <label>Weitere Verschlechterung in Minuten<input id="repeat-minutes" type="number" min="1" step="1" required></label>
+          <label>Abklingzeit in Minuten<input id="cooldown-minutes" type="number" min="1" step="1" required></label>
+        </div>
+      </section>
+
+      <section aria-labelledby="api-usage-heading">
+        <h2 id="api-usage-heading">API-Nutzung</h2>
+        <p class="usage-total">Gesamte Maps-Aufrufe: <strong id="api-total-calls">0</strong></p>
+        <p class="hint">Gezählt werden tatsächlich gestartete Google-Routes-Aufrufe. Das lokale Protokoll enthält keine API-Keys oder Adressen und zeigt maximal 100 Einträge.</p>
+        <div class="log-table-wrapper">
+          <table>
+            <caption class="sr-only">Internes Protokoll der Google-Routes-Aufrufe</caption>
+            <thead><tr><th>Zeitpunkt</th><th>Auslöser</th><th>Ergebnis</th></tr></thead>
+            <tbody id="api-usage-log"></tbody>
+          </table>
+        </div>
+        <p id="api-usage-empty" class="hint">Noch keine API-Aufrufe protokolliert.</p>
+      </section>
+
+      <div id="form-status" class="notice" role="status" aria-live="polite" hidden></div>
+      <div class="actions">
+        <button class="primary" type="submit">Einstellungen speichern</button>
+        <button id="test-configuration" type="button">Verbindung und Route testen</button>
+      </div>
+      <div class="actions secondary-actions">
+        <button id="delete-key" class="danger" type="button">API-Key löschen</button>
+        <button id="clear-data" class="danger" type="button">Alle lokalen Daten löschen</button>
+      </div>
+    </form>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>
